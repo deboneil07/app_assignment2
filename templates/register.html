@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Posts</title>
+    <title>Register</title>
     <link rel="stylesheet" href="../static/new.css">
     <style>
         /* General styles */
@@ -27,8 +27,6 @@
             position: sticky; /* Keep header at the top */
             top: 0; /* Stick to top */
             z-index: 1000; /* Ensure it stays above other elements */
-            padding-left: 15px; /* Adjust left padding */
-            padding-right: 15px; /* Adjust right padding */
         }
 
         header h1 {
@@ -44,7 +42,7 @@
         nav a {
             text-decoration: none;
             color: #fff; /* White text for links */
-            margin-left: 20px;
+            margin-right: 100px; /* Add margin right for spacing */
             font-weight: bold;
             transition: color 0.3s;
         }
@@ -62,61 +60,53 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             margin-top: 20px; /* Space below header */
-            padding-left: 15px; /* Adjust left padding */
-            padding-right: 15px; /* Adjust right padding */
         }
 
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        form {
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            gap: 15px; /* Space between form elements */
         }
 
-        li {
-            background-color: #f9f9f9; /* Light cream for individual posts */
-            border: 1px solid transparent; /* Add a transparent border for spacing */
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px; /* Space below each post */
-            transition: box-shadow 0.3s;
-            position: relative; /* Ensure posts stay in context */
+        label {
+            font-weight: bold; /* Bold for labels */
         }
 
-        li:hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Shadow on hover */
+        input[type="text"],
+        input[type="password"] {
+            padding: 10px;
+            border: 1px solid #ccc; /* Light gray border */
+            border-radius: 4px;
+            font-size: 1rem; /* Consistent font size */
+            width: 100%; /* Full width */
+            box-sizing: border-box; /* Include padding in width */
         }
 
-        li h2 {
-            font-size: 1.8rem;
-            color: #333; /* Dark text for titles */
-            margin: 0 0 10px 0;
-        }
-
-        li p {
-            color: #555; /* Medium gray for post content */
-            line-height: 1.6;
-        }
-
-        small {
-            color: #999; /* Light gray for date */
-            display: block;
-            margin-top: 10px;
-            font-style: italic;
-        }
-
-        .like-button {
+        button {
+            padding: 10px;
             background-color: #6f4c3e; /* Coffee color */
             color: #fff; /* White text */
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
+            border: none; /* No border */
+            border-radius: 4px;
+            cursor: pointer; /* Pointer cursor on hover */
+            font-size: 1rem;
             transition: background-color 0.3s;
         }
 
-        .like-button:hover {
-            background-color: #e1c6b5; /* Light cream on hover */
+        button:hover {
+            background-color: #5b3f35; /* Darker coffee on hover */
+        }
+
+        a {
+            color: #6f4c3e; /* Coffee color */
+            text-decoration: none;
+            text-align: center; /* Center align */
+            display: block; /* Make it a block element */
+            margin-top: 15px; /* Space above */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Underline on hover */
         }
 
         /* Footer styles */
@@ -146,8 +136,7 @@
             }
 
             nav a {
-                margin-left: 0;
-                margin-right: 15px;
+                margin-right: 15px; /* Adjust spacing */
                 margin-bottom: 5px; /* Space between links when wrapping */
             }
         }
@@ -160,56 +149,32 @@
 
             nav a {
                 font-size: 0.9rem; /* Smaller text for links */
-                margin-left: 10px; /* Adjust spacing */
-            }
-
-            main {
-                padding-left: 10px; /* Further adjust left padding */
-                padding-right: 10px; /* Further adjust right padding */
+                margin-right: 10px; /* Adjust spacing */
             }
         }
     </style>
-    <script>
-        async function likePost(postId) {
-            const response = await fetch(`/like_post/${postId}`, {
-                method: 'POST'
-            });
-
-            if (response.ok) {
-                const updatedPost = await response.json();
-                // Update the like count in the DOM
-                document.getElementById(`like-count-${postId}`).textContent = updatedPost.likes;
-            }
-        }
-    </script>
 </head>
 <body>
     <header>
-        <h1>All Blog Posts</h1>
+        <h1>Register</h1>
         <nav>
             <a href="/new_post">Create New Post</a>
-            <a style="margin-right: 100px;" href="/logout">Logout</a>
+            <a href="/logout">Logout</a>
         </nav>
     </header>
 
-    <main>
-        {% if posts %}
-            <ul>
-                {% for post in posts %}
-                    <li>
-                        <h2>{{ post['title'] }}</h2>
-                        <p>{{ post['content'] }}</p>
-                        <small>Posted on {{ post['created_at'] }}</small>
-                        <div>
-                          <button class="like-button" onclick="likePost({{ post['id'] }})">❤️</button>
-                          <span id="like-count-{{ post['id'] }}">{{ post['likes'] }}</span> Likes
-                      </div>                      
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p class="text-center" style="text-align: center; color: #999;">No posts available.</p>
+    <main style="flex-direction: column;">
+        {% if error %}
+            <p style="color:red; text-align: center;">{{ error }}</p>
         {% endif %}
+        <form action="/register" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Register</button>
+        </form>
+        <a href="/login">Already have an account? Login</a>
     </main>
 
     <footer>

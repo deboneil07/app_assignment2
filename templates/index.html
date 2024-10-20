@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index</title>
+    <link rel="stylesheet" href="../static/about.css" />
+    <style>
+      .posts {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 20px 0;
+      }
+
+      .post-card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        transition: transform 0.3s;
+      }
+
+      .post-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .post-card h2 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+
+      .post-card p {
+        font-size: 1rem;
+        margin-bottom: 15px;
+        color: #333;
+      }
+
+      .post-card small {
+        color: #888;
+      }
+
+      .post-card a.read-more {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 12px;
+        background-color: #007bff;
+        color: white;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+      }
+
+      .post-card a.read-more:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header>
+      <div class="navbar">
+        <h1>Blog</h1>
+
+        <!-- Search Bar -->
+        <div class="search">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="currentColor"
+            class="bi bi-search"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
+            />
+          </svg>
+          <input type="text" placeholder="Search.." />
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="navbar-main">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+
+          <!-- Profile Icon -->
+          <a href="#">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              color="white"
+              width="24"
+              height="24"
+              fill="currentColor"
+              class="bi bi-person-circle"
+              viewBox="0 0 16 16"
+            >
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+              <path
+                fill-rule="evenodd"
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main>
+      <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+          <ul>
+            <li><a href="#">Categories</a></li>
+            <li><a href="#">Following</a></li>
+            <li><a href="#">Followers</a></li>
+            <li><a href="/new">New Blog</a></li>
+          </ul>
+        </aside>
+      </div>
+
+      <!-- Blog Posts Section -->
+      <div class="container">
+        <h1>Explore Latest Blogs</h1>
+
+        <div class="posts">
+          {% for post in posts %}
+          <div class="post-card">
+            <h2>{{ post.title }}</h2>
+            <!-- Show only the first 20 words of the content -->
+            <p>{{ post.content | truncate(20) }}</p>
+            <small>Published on: {{ post.created_at }}</small>
+            <!-- Read More Button -->
+            <a href="/post/{{ post.id }}" class="read-more">Read More</a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+      <p class="foote">&copy; 2024 BlogShare. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

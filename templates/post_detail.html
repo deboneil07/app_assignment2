@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ post.title }}</title>
+    <link rel="stylesheet" href="../static/about.css" />
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Container layout */
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+
+      /* Header styles */
+      header {
+        border-bottom: 2px solid #007bff;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+      }
+
+      header h1 {
+        font-size: 2rem;
+        color: white;
+        margin-bottom: 10px;
+      }
+
+      header small {
+        font-size: 0.875rem;
+        color: #666;
+      }
+
+      /* Main article content */
+      main {
+        margin-bottom: 40px;
+      }
+
+      article p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #333;
+        text-align: justify;
+      }
+
+      /* Footer styles */
+      footer {
+        text-align: center;
+        padding: 20px 0;
+        font-size: 0.875rem;
+        color: #999;
+        border-top: 1px solid #ddd;
+      }
+
+      /* Media Queries for responsiveness */
+      @media (max-width: 768px) {
+        .container {
+          padding: 15px;
+        }
+
+        header h1 {
+          font-size: 1.75rem;
+        }
+
+        article p {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header Section -->
+      <header>
+        <h1>{{ post.title }}</h1>
+        <small>Published on: {{ post.created_at }}</small>
+      </header>
+
+      <!-- Main Content Section -->
+      <main>
+        <article>
+            <div>
+                <p>{{ post.content }}</p>
+            </div>
+            <div>
+                <a style="margin-bottom: 200rem;" href="/">home</a>
+
+            </div>
+          
+        </article>
+
+      </main>
+
+      
+      <!-- Footer Section -->
+      <footer>
+        <p>&copy; 2024 BlogShare. All rights reserved.</p>
+      </footer>
+    </div>
+  </body>
+</html>

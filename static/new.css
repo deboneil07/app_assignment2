@@ -1,0 +1,146 @@
+body{
+    margin: 0;
+    padding: 0;
+    /* font-family: sans-serif; */
+    background-color: white;
+}
+
+header{
+    padding: 20px 30px;
+    border-bottom: 1px solid lightgray;
+    background-color: #333;
+    color:whitesmoke;
+    position: fixed;
+    width: 100%;
+}
+
+.navbar ,.navbar-main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-main ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    font-size: 20px;
+}
+
+.navbar-main li{
+    margin-right: 20px;
+    color: #ddd;
+
+}
+
+.navbar-main li a{
+    text-decoration: none;
+    color:whitesmoke
+}
+.search{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.search input{
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 400px;
+}
+
+main{
+    display: flex;
+    padding-top: 120px ;
+}
+
+.sidebar{
+    width: 150px;
+    border-right: 1px solid #333;
+    padding-right: 20px;
+    /* height: 600px; */
+    display: flex;
+    padding-top: 10px;
+    flex-direction: column;
+
+}
+
+.sidebar ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar li{
+    margin-bottom: 0px;
+
+}
+
+.sidebar li a{
+    text-decoration: none;
+    color: #333;
+}
+footer {
+  background-color: #f2f2f2;
+  padding: 15px;
+  text-align: center;
+}
+.sidebar ul li{
+    padding-top: 20px;
+    font-size: 20px;
+    padding-left: 20px;
+}
+.navbar-main li a:hover, .sidebar li a:hover {
+    color: goldenrod;
+    position: relative; /* Required for absolute positioning of the box */
+  }
+
+#postForm{
+    display: block;
+    align-items: start;
+    padding: 10px 20px;
+    font-size: 20px;
+    border: 1px solid black;
+    margin-left: 20px;
+    width: 500px
+}
+.postTitle ,.postCategory ,.postDescription{
+    width: 100%;
+    margin-bottom: 20px;
+    height: 30px;
+    font-size: 15px;
+}
+.postheading{
+    margin:0px 45%;
+}
+.postDescription{
+    height: 300px;
+}
+.content h2{
+    margin-left: 20px;
+}
+.postheading1{
+    margin: 0px 42%;
+}
+.postheading2{
+    margin: 0px 41%;
+}
+.postSubmitBtn{
+    margin: 0px 85%;
+    width: 75px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    background-color: #ddd;
+    color: #333;
+}
+.postSubmitBtn:hover{
+    background-color: #333;
+    color: #ddd;
+}
+.footer{
+    width:100%;
+    text-align: center;
+}

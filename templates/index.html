@@ -179,6 +179,8 @@
                 const updatedPost = await response.json();
                 // Update the like count in the DOM
                 document.getElementById(`like-count-${postId}`).textContent = updatedPost.likes;
+            } else {
+                console.error('Failed to like the post');
             }
         }
     </script>

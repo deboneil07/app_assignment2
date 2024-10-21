@@ -4,183 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="../static/new.css">
     <style>
-        /* General styles */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4; /* Light cream background */
+        /* Reset some default styles */
+        * {
             margin: 0;
             padding: 0;
-            color: #333; /* Dark text color for readability */
+            box-sizing: border-box;
         }
 
-        /* Header styles */
-        header {
-            background-color: #6f4c3e; /* Coffee color */
-            padding: 20px;
+        body {
+            flex-direction: column;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f6;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            color: #fff; /* White text */
-            position: sticky; /* Keep header at the top */
-            top: 0; /* Stick to top */
-            z-index: 1000; /* Ensure it stays above other elements */
+            height: 100vh;
         }
 
-        header h1 {
-            font-size: 2.5rem;
-            margin: 0;
-        }
-
-        nav {
-            display: flex; /* Use flexbox for navigation */
-            flex-wrap: wrap; /* Allow wrapping for smaller screens */
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #fff; /* White text for links */
-            margin-left: 20px;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #e1c6b5; /* Light cream color on hover */
-        }
-
-        /* Main content styles */
-        main {
-            max-width: 800px; /* Centering main content */
-            margin: 20px auto;
-            padding: 20px;
-            flex-direction: row;
-            background-color: #fff; /* White background for posts */
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-top: 20px; /* Space below header */
+        h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
         }
 
         form {
-            display: flex;
-            flex-direction: column; /* Stack elements vertically */
-            gap: 15px; /* Space between form elements */
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
         }
 
-        label {
-            font-weight: bold; /* Bold for labels */
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
         }
 
-        input[type="text"],
-        input[type="password"] {
-            padding: 10px;
-            border: 1px solid #ccc; /* Light gray border */
-            border-radius: 4px;
-            font-size: 1rem; /* Consistent font size */
-            width: 100%; /* Full width */
-            box-sizing: border-box; /* Include padding in width */
+        input:focus {
+            border-color: #0066cc;
+            outline: none;
         }
 
         button {
-            padding: 10px;
-            background-color: #6f4c3e; /* Coffee color */
-            color: #fff; /* White text */
-            border: none; /* No border */
-            border-radius: 4px;
-            cursor: pointer; /* Pointer cursor on hover */
-            font-size: 1rem;
-            transition: background-color 0.3s;
+            width: 100%;
+            padding: 12px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
         button:hover {
-            background-color: #5b3f35; /* Darker coffee on hover */
+            background-color: #005bb5;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 15px;
         }
 
         a {
-            color: #6f4c3e; /* Coffee color */
+            color: #0066cc;
             text-decoration: none;
-            text-align: center; /* Center align */
-            display: block; /* Make it a block element */
-            margin-top: 15px; /* Space above */
         }
 
         a:hover {
-            text-decoration: underline; /* Underline on hover */
+            text-decoration: underline;
         }
 
-        /* Footer styles */
-        footer {
-            background-color: #6f4c3e; /* Coffee color */
-            color: #fff; /* White text */
+        .error {
+            color: red;
             text-align: center;
-            padding: 15px;
-            margin-top: 20px;
-            border-top: 1px solid #e1c6b5; /* Light cream top border */
-        }
-
-        footer p {
-            margin: 0;
-        }
-
-        /* Responsive styles */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            nav {
-                margin-top: 10px;
-                justify-content: flex-start; /* Align links to the left */
-            }
-
-            nav a {
-                margin-left: 0;
-                margin-right: 15px;
-                margin-bottom: 5px; /* Space between links when wrapping */
-            }
-        }
-
-        /* Additional responsive adjustments */
-        @media (max-width: 480px) {
-            header h1 {
-                font-size: 2rem; /* Smaller header on very small screens */
-            }
-
-            nav a {
-                font-size: 0.9rem; /* Smaller text for links */
-                margin-left: 10px; /* Adjust spacing */
-            }
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Login</h1>
-        <nav>
-            <a href="/new_post">Create New Post</a>
-            <a style="margin-right: 100px;" href="/logout">Logout</a>
-        </nav>
-    </header>
-
-    <main style="flex-direction: column;">
+    <h2>Login Page</h2>
+    <form action="/" method="POST">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Login</button>
         {% if error %}
-            <p style="color:red; text-align: center;">{{ error }}</p>
+            <p class="error">{{ error }}</p>
         {% endif %}
-        <form action="/login" method="post">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <button type="submit">Login</button>
-        </form>
-        <a href="/register">Don't have an account? Register</a>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 BlogShare. All rights reserved.</p>
-    </footer>
+    </form>
+    <p>Don't have an account? <a href="/register">Register</a></p>
 </body>
 </html>
